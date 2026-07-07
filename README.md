@@ -30,3 +30,4 @@ https://grvt.io/exchange/account/api-keys
 - [GRVT Skills](https://github.com/gravity-technologies/grvt-skills)
 - [DeepWiki TypeScript SDK](https://deepwiki.com/gravity-technologies/grvt-ts-sdk)
 - [ダッシュボード](https://grvt.io/exchange/perpetual/BTC-USDT)
+- [TypesScript SDKの概要説明](https://deepwiki.com/search/_1ef99661-84d2-4fcd-b2a8-465951b2616b)
