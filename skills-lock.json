@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "account-management": {
+      "source": "gravity-technologies/grvt-skills",
+      "sourceType": "github",
+      "skillPath": "skills/account-management/SKILL.md",
+      "computedHash": "ac648260fb4e0208ef84f06c68237b7f5b8a26cbd92b4422ff5bf61c42564179"
+    },
+    "investment": {
+      "source": "gravity-technologies/grvt-skills",
+      "sourceType": "github",
+      "skillPath": "skills/investment/SKILL.md",
+      "computedHash": "5d14aefbc38542b87924eac5a7239b67cebf85edb4376bec2dba25362a3215b2"
+    },
+    "market-data": {
+      "source": "gravity-technologies/grvt-skills",
+      "sourceType": "github",
+      "skillPath": "skills/market-data/SKILL.md",
+      "computedHash": "88834f184f25993e7888357eeb222d3fa8e1f3eed6a3a58cce060e21c8a88c00"
+    },
+    "perpetual-trading": {
+      "source": "gravity-technologies/grvt-skills",
+      "sourceType": "github",
+      "skillPath": "skills/perpetual-trading/SKILL.md",
+      "computedHash": "9b25d6082494f5bb4dbc1201dbec89f6574cee3d16cd42babcf48a3218f29696"
+    }
+  }
+}
