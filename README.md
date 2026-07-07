@@ -11,8 +11,16 @@ Grvt（グラビティ）とは、2026年にリリースされる予定のDEX（
 ## Agent SKILL
 
 ```bash
-
+npx skills add gravity-technologies/grvt-skills
 ```
+
+## APIキーの取得
+
+https://grvt.io/exchange/perpetual/BTC-USDT にアクセスしてサインアップ後発行できるようになる。
+
+以下のページから取得できる
+
+https://grvt.io/exchange/account/api-keys
 
 ## 参考文献
 - [APIドキュメント](https://api-docs.grvt.io/#ccxt-javascript--typescript)
@@ -20,3 +28,5 @@ Grvt（グラビティ）とは、2026年にリリースされる予定のDEX（
 - [GitHub TypeScript SDK](https://github.com/gravity-technologies/grvt-ts-sdk)
 - [分散型取引所Grvtの将来性は？特徴・エアドロップの獲得方法などを徹底解説](https://www.for-it.co.jp/mediverse/exchange/grvt/)
 - [GRVT Skills](https://github.com/gravity-technologies/grvt-skills)
+- [DeepWiki TypeScript SDK](https://deepwiki.com/gravity-technologies/grvt-ts-sdk)
+- [ダッシュボード](https://grvt.io/exchange/perpetual/BTC-USDT)
