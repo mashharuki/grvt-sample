@@ -69,3 +69,28 @@ export async function postJson(
   }
   return payload;
 }
+
+/**
+ * 認証付きGETリクエストを送信する
+ * @param url
+ * @param auth
+ * @returns
+ */
+export async function getJson(
+  url: string,
+  auth: AuthSession,
+): Promise<unknown> {
+  const headers = new Headers({
+    cookie: auth.cookie,
+    "x-grvt-account-id": auth.accountId,
+  });
+  const response = await fetch(url, { method: "GET", headers });
+  const text = await response.text();
+  const payload = text.length > 0 ? JSON.parse(text) : null;
+  if (!response.ok) {
+    throw new Error(
+      `GRVT ${response.status} ${response.statusText}: ${JSON.stringify(payload)}`,
+    );
+  }
+  return payload;
+}

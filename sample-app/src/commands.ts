@@ -3,7 +3,7 @@ import type { CliOptions } from "./utils/args";
 import type { LoginResult } from "./utils/auth";
 import { loginWithApiKey, maskSecret } from "./utils/auth";
 import { getEndpointConfig, parseRuntimeEnv, wsUrl } from "./utils/config";
-import { postJson } from "./utils/http";
+import { getJson, postJson } from "./utils/http";
 import { assertWriteAllowed } from "./utils/safety";
 
 type CommandContext = {
@@ -346,10 +346,10 @@ const commands: Record<string, CommandHandler> = {
       payload_shape: payload,
     });
   },
-  "referral:epochs": async (ctx) => referral(ctx, "v1/epochs", {}),
-  "referral:points": async (ctx) => referral(ctx, "v1/point_summary", {}),
+  "referral:epochs": async (ctx) => referral(ctx, "epochs", {}),
+  "referral:points": async (ctx) => referral(ctx, "points", {}),
   "referral:data": async (ctx) =>
-    referral(ctx, "v1/referral_data", { limit: ctx.options.limit ?? 50 }),
+    referral(ctx, "data", { page_size: ctx.options.limit ?? 50 }),
   "builder:guide": (ctx) => {
     const env = ctx.options.env ?? ctx.runtimeEnv.GRVT_ENV;
     const config = getEndpointConfig(env);
@@ -461,9 +461,10 @@ async function guardedWrite(
 
 async function referral(
   ctx: CommandContext,
-  method: string,
-  body: unknown,
+  path: string,
+  query: Record<string, string | number | boolean | undefined>,
 ): Promise<void> {
+  // referral系APIは trades ではなく edge ホストの GET /api/v1/referral/* で提供される
   const env = ctx.options.env ?? ctx.runtimeEnv.GRVT_ENV;
   const config = getEndpointConfig(env);
   const apiKey = required(
@@ -471,15 +472,15 @@ async function referral(
     "GRVT_TRADING_API_KEY",
   );
   const login = await loginWithApiKey(config, apiKey);
-  printJson(
-    await postJson(config, {
-      service: "trades",
-      flavor: ctx.options.flavor,
-      method,
-      body,
-      auth: login,
-    }),
-  );
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(query)) {
+    if (value !== undefined) {
+      params.set(key, String(value));
+    }
+  }
+  const qs = params.toString();
+  const url = `${config.edgeBaseUrl}/api/v1/referral/${path}${qs ? `?${qs}` : ""}`;
+  printJson(await getJson(url, login));
 }
 
 function symbol(ctx: CommandContext): string {
