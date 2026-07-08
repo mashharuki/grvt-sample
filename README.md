@@ -22,6 +22,12 @@ https://grvt.io/exchange/perpetual/BTC-USDT にアクセスしてサインアッ
 
 https://grvt.io/exchange/account/api-keys
 
+テストネットの場合は
+
+https://testnet.grvt.io/
+
+にアクセスすること
+
 ## 参考文献
 - [APIドキュメント](https://api-docs.grvt.io/#ccxt-javascript--typescript)
 - [GitHub](https://github.com/gravity-technologies)
